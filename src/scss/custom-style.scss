@@ -1,0 +1,171 @@
+// Style for site vitrine front-end
+// Author : Julia Bargoin
+// Last update : July 2019
+html,
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#conponent-body {
+  padding-top: 8vh;
+}
+
+.home {
+  z-index: 0;
+  .home-top {
+    display: flex;
+    align-items: center;
+    background: url(../img/home-hero.jpg) no-repeat center center;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+  }
+  .title-home-top {
+    // text-shadow: 0 0 0.2em theme-color('primary');
+
+    // color: black;
+    // text-shadow: theme-color('primary') 0.1em 0.1em 0.2em;
+
+    text-shadow: -1px -2px 0 theme-color("primary");
+  }
+}
+
+.menu {
+  z-index: 10;
+  position: fixed;
+  width: 100vw;
+  background: rgba(theme-color("primary"), 1);
+}
+
+.home-cards {
+  display: flex;
+  justify-content: center;
+  .card-img-top {
+    width: 100%;
+    height: 12vw;
+    object-fit: cover;
+  }
+}
+
+.presentation {
+  display: flex;
+  align-items: center;
+  padding: 3em 0;
+  .image-bienvenue {
+    width: 100%;
+    height: 100%;
+    margin-right: 3em;
+  }
+}
+
+.rdv-from {
+  padding: 3em 0;
+  display: flex;
+  justify-content: center;
+  .contact {
+    display: flex;
+  }
+}
+
+.main-footer {
+  padding: 2.5rem 0;
+  background-color: #f6f1ec;
+  .main-footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      margin-bottom: 0;
+    }
+    a {
+      color: #212529;
+    }
+    .icon-social {
+      height: 2em;
+      margin-left: 1em;
+    }
+  }
+}
+
+.type-consultation {
+  display: flex;
+  margin-top: 3em;
+  p {
+    margin-top: 0.7em;
+  }
+  ul > li {
+    margin-top: 1em;
+  }
+  .title {
+    text-decoration: underline;
+  }
+  .modalité-consultation {
+    margin-left: 2em;
+    margin-right: 5em;
+  }
+  .prix-consultation {
+    margin-left: 4em;
+    margin-right: 4em;
+  }
+  .horaires-consutation {
+    margin-left: 3em;
+    margin-right: 1em;
+    .horaires {
+      display: flex;
+    }
+  }
+}
+.card-blog {
+  display: flex;
+  justify-content: center;
+  .card-date-author {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.home-admin {
+  .home-admin-col {
+    border: black 1px solid;
+  }
+  // .img-home-adim {
+  // }
+  .content-admin-date-author {
+    display: flex;
+    justify-content: space-between;
+  }
+  .content-admin-rdv {
+    display: flex;
+    justify-content: space-between;
+    .text-padding {
+      margin: 0vh 4vh 0vh 0vh;
+    }
+  }
+}
+
+.blog-public {
+  display: flex;
+  justify-content: center;
+}
+
+.rdv {
+  .btn-rdv {
+    margin: 1vh 0vh 0vh 0vh;
+  }
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.card-header {
+  margin-top: -1px;
+  height: 60px;
+  background: linear-gradient(-50deg, #bf019f, #f28a57);
+  box-shadow: 1px 5px 15px #a2a2a2;
+  .card-title {
+    display: flex;
+    justify-content: center;
+  }
+}

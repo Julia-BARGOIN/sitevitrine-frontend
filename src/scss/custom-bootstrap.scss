@@ -1,0 +1,9 @@
+// Custom bootstrap variables
+$theme-colors: (
+  "primary": pink,
+);
+
+
+
+// Importing bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";

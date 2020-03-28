@@ -1,10 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "../scss/index.scss";
+import { connect } from "react-redux";
 
-const Article = ({ title, text, author, date, truncateSize, col }) => {
+const Article = ({
+  article,
+  date,
+  truncateSize,
+  col,
+  handleDelete,
+  isLoged
+}) => {
   const truncate = (source, size) =>
     source.length > size ? source.slice(0, size - 1) + "…" : source;
+  const { _id, title, text, author } = article;
+
   return (
     <div className={`col-${col} mb-1`}>
       <div className="card">
@@ -22,6 +32,16 @@ const Article = ({ title, text, author, date, truncateSize, col }) => {
           <p className="card-date">
             <small className="text-muted"> {date} </small>
           </p>
+          {isLoged && (
+            <button
+              onClick={e => {
+                handleDelete(e, _id);
+              }}
+            >
+              supprimer
+            </button>
+          )}
+          {isLoged && <button>modifier</button>}
         </div>
       </div>
     </div>
@@ -29,9 +49,13 @@ const Article = ({ title, text, author, date, truncateSize, col }) => {
 };
 
 class Articles extends Component {
-  state = {
-    articles: []
-  };
+  constructor() {
+    super();
+    this.state = {
+      articles: []
+    };
+    this.handleDelete = this.handleDelete.bind(this);
+  }
 
   componentDidMount() {
     const { limit } = this.props;
@@ -44,9 +68,24 @@ class Articles extends Component {
       });
   }
 
+  handleDelete(e, id) {
+    e.preventDefault();
+
+    axios
+      .delete(`http://localhost:8081/article/delete/${id}`)
+      .then(Response => {
+        this.setState = {
+          articles: this.state.articles.filter(article => article._id !== id)
+        };
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
     const { articles } = this.state;
-    const { truncateSize, col } = this.props;
+    const { truncateSize, col, isLoged } = this.props;
 
     return (
       <div className="container">
@@ -56,13 +95,13 @@ class Articles extends Component {
               const date = new Date(article.date);
               return (
                 <Article
+                  isLoged={isLoged}
+                  article={article}
                   key={article._id}
-                  title={article.title}
-                  text={article.text}
-                  author={article.author}
                   date={date.toDateString()}
                   truncateSize={truncateSize}
                   col={col}
+                  handleDelete={this.handleDelete}
                 />
               );
             })}
@@ -72,5 +111,7 @@ class Articles extends Component {
     );
   }
 }
-
-export default Articles;
+const mapToProps = state => ({
+  isLoged: state.session.isLoged
+});
+export default connect(mapToProps)(Articles);

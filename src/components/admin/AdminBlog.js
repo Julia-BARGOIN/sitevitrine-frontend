@@ -16,7 +16,6 @@ class AdminBlog extends Component {
     };
     this.onClick = this.onClick.bind(this);
     this.onChange = this.onChange.bind(this);
-    // this.onDelete=this.handleDelete.bind(this);
   }
 
   onChange(e) {
@@ -38,16 +37,6 @@ class AdminBlog extends Component {
           date: ""
         });
       })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-  handleDelete(e) {
-    e.preventDefault();
-
-    axios
-      .post("http://localhost:8081/article/delete", this.state)
-      .then(Response => {})
       .catch(error => {
         console.log(error);
       });
@@ -109,7 +98,6 @@ class AdminBlog extends Component {
             <button
               type="submit"
               className="btn btn-danger mr-auto p-2 pr-3 pl-3 bd-highlight"
-              onClick={e => this.handleDelete(e)}
             >
               Supprimer
             </button>

@@ -27,39 +27,38 @@ const Navbar = props => {
                 Accueil
               </Link>
             </li>
-            {!props.isAdmin && (
-              <li className="nav-item">
-                <Link to="/#consultations" className="nav-link">
-                  Consultations
-                </Link>
-              </li>
-            )}
-            {!props.isAdmin && (
-              <li className="nav-item">
-                <Link to="/#contact" className="nav-link">
-                  Témoignages
-                </Link>
-              </li>
-            )}
-            {props.isAdmin && (
-              <li className="nav-item">
-                <Link to="/AdminRdv" className="nav-link">
-                  RDV
-                </Link>
-              </li>
-            )}
+
+            <li className="nav-item">
+              <Link to="/#consultations" className="nav-link">
+                Consultations
+              </Link>
+            </li>
+
+            {/* {!isLoged && ( */}
+            <li className="nav-item">
+              <Link to="/#contact" className="nav-link">
+                Témoignages
+              </Link>
+            </li>
+            {/* )} */}
+
+            <li className="nav-item">
+              <Link to="/AdminRdv" className="nav-link">
+                RDV
+              </Link>
+            </li>
+
             <li className="nav-item">
               <Link to="/blog" className="nav-link">
                 Blog
               </Link>
             </li>
-            {!props.isAdmin && (
-              <li className="nav-item">
-                <Link to="/#contact" className="nav-link">
-                  Contact
-                </Link>
-              </li>
-            )}
+
+            <li className="nav-item">
+              <Link to="/#contact" className="nav-link">
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../scss/index.scss";
 import { connect } from "react-redux";
+import { openModal } from "./admin/modal/actions/";
 
 const Article = ({
   article,
@@ -9,7 +10,8 @@ const Article = ({
   truncateSize,
   col,
   handleDelete,
-  isLoged
+  isLoged,
+  dispatch
 }) => {
   const truncate = (source, size) =>
     source.length > size ? source.slice(0, size - 1) + "…" : source;
@@ -37,11 +39,19 @@ const Article = ({
               onClick={e => {
                 handleDelete(e, _id);
               }}
+              className="btn btn-danger mr-auto p-2 pr-3 pl-3 bd-highlight"
             >
               supprimer
             </button>
           )}
-          {isLoged && <button>modifier</button>}
+          {isLoged && (
+            <button
+              onClick={() => dispatch(openModal(true, "article-update", _id))}
+              className="btn btn-info p-2 pr-3 pl-3 bd-highlight"
+            >
+              modifier
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -85,7 +95,7 @@ class Articles extends Component {
 
   render() {
     const { articles } = this.state;
-    const { truncateSize, col, isLoged } = this.props;
+    const { truncateSize, col, isLoged, dispatch } = this.props;
 
     return (
       <div className="container">
@@ -95,6 +105,7 @@ class Articles extends Component {
               const date = new Date(article.date);
               return (
                 <Article
+                  dispatch={dispatch}
                   isLoged={isLoged}
                   article={article}
                   key={article._id}

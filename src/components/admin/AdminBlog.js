@@ -97,18 +97,6 @@ class AdminBlog extends Component {
           <div className="d-flex bd-highlight mb-3">
             <button
               type="submit"
-              className="btn btn-danger mr-auto p-2 pr-3 pl-3 bd-highlight"
-            >
-              Supprimer
-            </button>
-            <button
-              type="submit"
-              className="btn btn-info p-2 pr-3 pl-3 bd-highlight"
-            >
-              Modifier
-            </button>
-            <button
-              type="submit"
               className="btn btn-primary p-2 ml-5 pr-3 pl-3 bd-highlight"
               onClick={e => this.onClick(e)}
             >

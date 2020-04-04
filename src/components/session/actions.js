@@ -1,10 +1,11 @@
-import actionTypes from './action-types'
+import actionTypes from "./action-types";
 
 /**
  * Loged
  */
-export const loged = () => ({
-  type: actionTypes.LOGED
+export const loged = token => ({
+  type: actionTypes.LOGED,
+  token
 });
 
 /**

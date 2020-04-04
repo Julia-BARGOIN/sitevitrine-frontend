@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
+import { openModal } from "./actions/";
 import { loged, logout } from "../../session/actions";
 
 const RedirectLogin = isLoged =>
@@ -34,8 +36,9 @@ class FormLogin extends Component {
         password
       })
       .then(response => {
-        this.onHandleClose();
-        dispatch(loged());
+        const { token } = response.data;
+        dispatch(openModal(false));
+        dispatch(loged(token));
       })
       .catch(error => {
         dispatch(logout());
@@ -84,4 +87,5 @@ class FormLogin extends Component {
     );
   }
 }
-export default FormLogin;
+
+export default connect()(FormLogin);

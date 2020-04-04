@@ -26,8 +26,10 @@ const PrivateAdmin = ({ isLoged, path, ReactComponent }) => (
 const IsLoged = ({ dispatch }) => {
   const cookies = new Cookies();
   const isLoged = cookies.get("isLoged");
-  if (isLoged) {
-    dispatch(loged());
+  const token = cookies.get("token");
+
+  if (isLoged && token) {
+    dispatch(loged(token));
   }
   return null;
 };

@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { Modal } from "react-bootstrap";
 import { openModal } from "./actions/";
 import FormLogin from "./form-login";
+import FormUpdateArticle from "./form-update-article";
+
 class ModalAdmin extends Component {
   constructor() {
     super();
@@ -34,17 +36,24 @@ class ModalAdmin extends Component {
     return;
   }
 
+  switchFrom(form, id) {
+    switch (form) {
+      case "article-update":
+        return <FormUpdateArticle id={id} />;
+      default:
+        return <FormLogin />;
+    }
+  }
+
   render() {
-    const { open } = this.props;
+    const { open, form, id } = this.props;
 
     return (
       <Modal show={open} onHide={this.onHandleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Connexion administrateur</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <FormLogin />
-        </Modal.Body>
+        <Modal.Body>{this.switchFrom(form, id)}</Modal.Body>
         <Modal.Footer>
           <button variant="secondary" onClick={this.onHandleClose}>
             Close
@@ -56,9 +65,9 @@ class ModalAdmin extends Component {
 }
 
 const mapToProps = state => {
-  const { open } = state.modal;
+  const { open, form, id } = state.modal;
 
-  return { open };
+  return { open, form, id };
 };
 
 export default connect(mapToProps)(ModalAdmin);

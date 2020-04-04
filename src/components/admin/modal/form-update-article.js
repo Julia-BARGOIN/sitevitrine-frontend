@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import axios from "axios";
 
 class FormUpdateArticle extends Component {
@@ -15,38 +16,40 @@ class FormUpdateArticle extends Component {
       author: ""
     };
   }
-  /**
-   * login
-   */
-  // login(e) {
-  //   const { dispatch } = this.props;
-  //   const { title, text, author } = this.state;
+  componentDidMount() {
+    this.getArticle();
+  }
+  getArticle() {
+    const { id } = this.props;
+    axios
+      .get(`http://localhost:8081/article/${id}`)
+      .then(res => {
+        const { title, text, author, date } = res.data;
+        this.setState({
+          title,
+          text,
+          author,
+          date
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
-  //   e.preventDefault();
-
-  //   axios
-  //     .post("http://localhost:8081/oauth", {
-  //       email,
-  //       password
-  //     })
-  //     .then(response => {
-  //       this.onHandleClose();
-  //       dispatch(loged());
-  //     })
-  //     .catch(error => {
-  //       dispatch(logout());
-  //     });
-  //   }
   updateArticle(e) {
+    const { id } = this.props;
     e.preventDefault();
 
     axios
-      .put("http://localhost:8081/article/update/${_id}", this.state)
-      .then(Response => {
+      .put(`http://localhost:8081/article/update/${id}`, this.state)
+      .then(res => {
+        const { title, text, author, date } = res.data;
         this.setState({
-          title: "",
-          text: "",
-          author: ""
+          title,
+          text,
+          author,
+          date
         });
       })
       .catch(error => {
@@ -66,7 +69,7 @@ class FormUpdateArticle extends Component {
   }
 
   render() {
-    const { title, text, author } = this.state;
+    const { title, text, author, date } = this.state;
     return (
       <>
         <form>
@@ -101,12 +104,11 @@ class FormUpdateArticle extends Component {
             />
           </div>
           <button variant="primary" onClick={e => this.updateArticle(e)}>
-            Singin
+            Mettre à jour
           </button>
         </form>
-        <RedirectLogin />
       </>
     );
   }
 }
-export default FormUpdateArticle;
+export default connect()(FormUpdateArticle);

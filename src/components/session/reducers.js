@@ -6,9 +6,11 @@ const initialState = {
   isLoged: false
 };
 
-const loged = state => {
+const loged = (state, action) => {
   const cookies = new Cookies();
+
   cookies.set("isLoged", "true");
+  cookies.set("token", action.token);
 
   return fromJS(state)
     .setIn(["isLoged"], true)
@@ -17,7 +19,10 @@ const loged = state => {
 
 const logout = state => {
   const cookies = new Cookies();
-  cookies.set("isLoged", "true");
+
+  cookies.set("isLoged", "false");
+  cookies.remove("token");
+
   fromJS(state)
     .setIn(["isLoged"], false)
     .toJS();
@@ -26,7 +31,7 @@ const logout = state => {
 export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOGED:
-      return loged(state);
+      return loged(state, action);
     case actionTypes.LOGOUT:
       return logout(state);
     default:

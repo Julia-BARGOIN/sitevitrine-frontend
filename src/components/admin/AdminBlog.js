@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Cookies from "universal-cookie";
 import axios from "axios";
 
 import NavbarAdmin from "./NavbarAdmin";
@@ -16,6 +17,7 @@ class AdminBlog extends Component {
     };
     this.onClick = this.onClick.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.cookies = new Cookies();
   }
 
   onChange(e) {
@@ -28,7 +30,11 @@ class AdminBlog extends Component {
     e.preventDefault();
 
     axios
-      .post("http://localhost:8081/article/create", this.state)
+      .post("http://localhost:8081/article/create", this.state, {
+        headers: {
+          token: this.cookies.get("token") || this.cookies.get("access-token")
+        }
+      })
       .then(Response => {
         this.setState({
           title: "",
@@ -43,7 +49,7 @@ class AdminBlog extends Component {
   }
 
   render() {
-    const { title, text, date, author, id } = this.state;
+    const { title, text, date, author } = this.state;
 
     return (
       <div>

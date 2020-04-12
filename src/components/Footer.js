@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { openModal } from "./admin/modal/actions/";
 import Modal from "./admin/modal/";
-import { logout } from "../components/session/actions";
+// import { logout } from "../components/session/actions";
 
 const Footer = ({ dispatch, isLogeg }) => {
   return (

@@ -1,7 +1,10 @@
 import React from "react";
 import { HashLink as Link } from "react-router-hash-link";
+import { Button } from "react-bootstrap";
+import { logout } from "../../components/session/actions";
+import { connect } from "react-redux";
 
-const NavbarAdmin = props => {
+const NavbarAdmin = ({ dispatch }) => {
   return (
     <div className="menu">
       <nav className="container navbar navbar-expand-md navbar-light">
@@ -32,11 +35,20 @@ const NavbarAdmin = props => {
                 Articles
               </Link>
             </li>
+
+            <li className="nav-item active">
+              <Button
+                onClick={() => {
+                  dispatch(logout());
+                }}
+              >
+                Déconnexion
+              </Button>
+            </li>
           </ul>
         </div>
       </nav>
     </div>
   );
 };
-
-export default NavbarAdmin;
+export default connect(state => state)(NavbarAdmin);

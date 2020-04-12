@@ -53,7 +53,7 @@ class Contact extends Component {
 
   render() {
     const { firstname, lastname, email, phone, subject } = this.state;
-    const { send } = this.state;
+    // const { send } = this.state;
 
     return (
       <div id={"contact"}>

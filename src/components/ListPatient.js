@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Cookies from "universal-cookie";
 import axios from "axios";
 
 const Patient = ({ firstname, lastname, email, phone, subject }) => {
@@ -20,14 +21,22 @@ class ListPatient extends Component {
     this.state = {
       items: []
     };
+
+    this.cookies = new Cookies();
   }
 
   componentDidMount() {
-    axios.get("http://localhost:8081/patient/show").then(res => {
-      const items = res.data;
+    axios
+      .get("http://localhost:8081/patient/show", {
+        headers: {
+          token: this.cookies.get("token") || this.cookies.get("access-token")
+        }
+      })
+      .then(res => {
+        const items = res.data;
 
-      this.setState({ items });
-    });
+        this.setState({ items });
+      });
   }
 
   render() {

@@ -13,8 +13,8 @@ import "./css/index.css";
 const store = createStore(
   reducers,
   compose(
-    applyMiddleware(reduxThunk)
-    // window.devToolsExtension && window.devToolsExtension()
+    applyMiddleware(reduxThunk),
+    window.devToolsExtension && window.devToolsExtension()
   )
 );
 

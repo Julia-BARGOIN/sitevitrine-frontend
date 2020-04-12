@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 class FormUpdateArticle extends Component {
   constructor() {
@@ -9,6 +10,8 @@ class FormUpdateArticle extends Component {
     this.onHandleTitle = this.onHandleTitle.bind(this);
     this.onHandleText = this.onHandleText.bind(this);
     this.onHandleAuthor = this.onHandleAuthor.bind(this);
+
+    this.cookies = new Cookies();
 
     this.state = {
       title: "",
@@ -42,7 +45,11 @@ class FormUpdateArticle extends Component {
     e.preventDefault();
 
     axios
-      .put(`http://localhost:8081/article/update/${id}`, this.state)
+      .put(`http://localhost:8081/article/update/${id}`, this.state, {
+        headers: {
+          token: this.cookies.get("token") || this.cookies.get("access-token")
+        }
+      })
       .then(res => {
         const { title, text, author, date } = res.data;
         this.setState({
@@ -69,7 +76,7 @@ class FormUpdateArticle extends Component {
   }
 
   render() {
-    const { title, text, author, date } = this.state;
+    const { title, text, author } = this.state;
     return (
       <>
         <form>

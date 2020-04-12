@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Cookies from "universal-cookie";
 import "../scss/index.scss";
 import { connect } from "react-redux";
 import { openModal } from "./admin/modal/actions/";
+import { fromJS } from "immutable";
 
 const Article = ({
   article,
@@ -65,14 +67,24 @@ class Articles extends Component {
       articles: []
     };
     this.handleDelete = this.handleDelete.bind(this);
+    this.cookies = new Cookies();
   }
 
   componentDidMount() {
     const { limit } = this.props;
     axios
-      .post("http://localhost:8081/articles/show", {
-        limit
-      })
+      .post(
+        "http://localhost:8081/articles/show",
+        {
+          limit
+        },
+        {
+          headers: {
+            token:
+              "eyJ3b3JkcyI6Wzc0NjQ2MzM0MywyMDU2NTkwMzQxLDcxNTA5NzY2MiwtMzQyODcyMTM3LDczNzY3NDg2LDk4OTkyNjQxOCw2NTQwMjUyNTEsLTgwMzE2MTMzNF0sInNpZ0J5dGVzIjozMn0"
+          }
+        }
+      )
       .then(response => {
         this.setState({ articles: response.data });
       });
@@ -82,7 +94,11 @@ class Articles extends Component {
     e.preventDefault();
 
     axios
-      .delete(`http://localhost:8081/article/delete/${id}`)
+      .delete(`http://localhost:8081/article/delete/${id}`, {
+        headers: {
+          token: this.cookies.get("token") || this.cookies.get("access-token")
+        }
+      })
       .then(Response => {
         this.setState = {
           articles: this.state.articles.filter(article => article._id !== id)

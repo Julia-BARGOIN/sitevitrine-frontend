@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import "../scss/index.scss";
 import { connect } from "react-redux";
 import { openModal } from "./admin/modal/actions/";
 import { fromJS } from "immutable";
+import DetaileArticle from "./DetailArticle";
 
 const Article = ({
   article,
@@ -21,10 +23,8 @@ const Article = ({
 
   return (
     <div className={`col-${col} mb-1`}>
+      <Link to={`/blog/article/${_id}`}> article </Link>
       <div className="card">
-        {/* <img src="{ image }" alt="image article">
-      {image}
-    </img> */}
         <div className="card-body">
           <h4 className="card-title">{title}</h4>
           <p className="card-text">
@@ -138,6 +138,7 @@ class Articles extends Component {
     );
   }
 }
+
 const mapToProps = state => ({
   isLoged: state.session.isLoged
 });

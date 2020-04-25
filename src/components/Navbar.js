@@ -1,7 +1,7 @@
 import React from "react";
 import { HashLink as Link } from "react-router-hash-link";
 
-const Navbar = props => {
+const Navbar = () => {
   return (
     <div className="menu">
       <nav className="container navbar navbar-expand-md navbar-light">
@@ -36,17 +36,11 @@ const Navbar = props => {
 
             {/* {!isLoged && ( */}
             <li className="nav-item">
-              <Link to="/#contact" className="nav-link">
+              <Link to="/#testimonials" className="nav-link">
                 Témoignages
               </Link>
             </li>
             {/* )} */}
-
-            <li className="nav-item">
-              <Link to="/AdminRdv" className="nav-link">
-                RDV
-              </Link>
-            </li>
 
             <li className="nav-item">
               <Link to="/blog" className="nav-link">
@@ -56,7 +50,13 @@ const Navbar = props => {
 
             <li className="nav-item">
               <Link to="/#contact" className="nav-link">
-                Contact
+                Prendre contact
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link to="/" className="nav-link">
+                Ton avis
               </Link>
             </li>
           </ul>

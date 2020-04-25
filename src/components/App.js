@@ -9,6 +9,7 @@ import Blog from "../components/Blog";
 import NotFound from "./NotFound";
 import AdminBlog from "../components/admin/AdminBlog";
 import { loged } from "./session/actions";
+import DetailArticle from "../components/DetailArticle";
 
 const PrivateAdmin = ({ isLoged, path, ReactComponent }) => (
   <Route
@@ -50,6 +51,7 @@ const App = ({ isLoged, dispatch }) => {
           ReactComponent={AdminBlog}
         />
         <Route path="/blog" component={Blog} />
+        <Route path="/blog/article/:id" component={DetailArticle} />
         <Route path="/" component={Home} />
         <Route component={NotFound} />
       </Switch>

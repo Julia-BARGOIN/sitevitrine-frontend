@@ -5,6 +5,7 @@ import { Modal } from "react-bootstrap";
 import { openModal } from "./actions/";
 import FormLogin from "./form-login";
 import FormUpdateArticle from "./form-update-article";
+import userAvis from "../../userAvis";
 
 class ModalAdmin extends Component {
   constructor() {

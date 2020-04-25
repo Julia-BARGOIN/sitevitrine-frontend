@@ -23,7 +23,7 @@ const logout = state => {
   cookies.set("isLoged", "false");
   cookies.remove("token");
 
-  fromJS(state)
+  return fromJS(state)
     .setIn(["isLoged"], false)
     .toJS();
 };

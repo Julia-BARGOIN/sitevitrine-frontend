@@ -22,6 +22,7 @@ class FormUpdateArticle extends Component {
   componentDidMount() {
     this.getArticle();
   }
+
   getArticle() {
     const { id } = this.props;
     axios

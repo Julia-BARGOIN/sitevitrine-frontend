@@ -1,10 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
+import { ButtonToolbar } from "react-bootstrap";
 
 const Article = ({ title, text, date, author }) => {
   return (
-    <div>
-      <h1 className="title">{title}</h1>
+    <div className="container mt-6">
+      <div className="row">
+        <div className="col-12">
+          <h1 className="display-4" style={{ marginTop: "60px" }}>
+            {title}
+          </h1>
+        </div>
+      </div>
+
       <p className="date">{date} </p>
       <p className="text">{text}</p>
       <p className="author">{author}</p>
@@ -38,7 +48,17 @@ class DetaileArticle extends Component {
     const { title, text, date, author, id } = this.state;
 
     return (
-      <Article key={id} date={date} text={text} author={author} title={title} />
+      <div>
+        <Navbar />
+        <Article
+          key={id}
+          date={date}
+          text={text}
+          author={author}
+          title={title}
+        />
+        <Footer />
+      </div>
     );
   }
 }

@@ -6,7 +6,7 @@ import "../scss/index.scss";
 import { connect } from "react-redux";
 import { openModal } from "./admin/modal/actions/";
 import { fromJS } from "immutable";
-import DetaileArticle from "./DetailArticle";
+import DetaileArticle from "../components/DetailArticle";
 
 const Article = ({
   article,

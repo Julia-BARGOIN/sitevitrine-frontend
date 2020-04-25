@@ -51,7 +51,7 @@ const App = ({ isLoged, dispatch }) => {
           ReactComponent={AdminBlog}
         />
         <Route path="/blog" component={Blog} />
-        <Route path="/blog/article/:id" component={DetailArticle} />
+        <Route path="/article/:id" component={DetailArticle} />
         <Route path="/" component={Home} />
         <Route component={NotFound} />
       </Switch>

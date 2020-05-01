@@ -1,7 +1,9 @@
 import React from "react";
 import { HashLink as Link } from "react-router-hash-link";
+import { openModal } from "./admin/modal/actions";
+import { connect } from "react-redux";
 
-const Navbar = () => {
+const Navbar = ({ dispatch }) => {
   return (
     <div className="menu">
       <nav className="container navbar navbar-expand-md navbar-light">
@@ -55,9 +57,12 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <Link to="/" className="nav-link">
-                Ton avis
-              </Link>
+              <button
+                to="/"
+                onClick={() => dispatch(openModal(true, "send-comment"))}
+              >
+                Déposer un avis
+              </button>
             </li>
           </ul>
         </div>
@@ -66,4 +71,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default connect(state => state)(Navbar);

@@ -15,7 +15,7 @@ const Article = ({ title, text, date, author }) => {
         </div>
       </div>
 
-      <p className="date">{date} </p>
+      <p className="text-muted">{date} </p>
       <p className="text">{text}</p>
       <p className="author">{author}</p>
     </div>

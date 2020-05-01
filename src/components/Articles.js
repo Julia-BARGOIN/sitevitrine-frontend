@@ -5,8 +5,6 @@ import Cookies from "universal-cookie";
 import "../scss/index.scss";
 import { connect } from "react-redux";
 import { openModal } from "./admin/modal/actions/";
-import { fromJS } from "immutable";
-import DetaileArticle from "../components/DetailArticle";
 
 const Article = ({
   article,
@@ -23,10 +21,11 @@ const Article = ({
 
   return (
     <div className={`col-${col} mb-1`}>
-      <Link to={`/blog/article/${_id}`}> article </Link>
       <div className="card">
         <div className="card-body">
-          <h4 className="card-title">{title}</h4>
+          <Link to={`/article/${_id}`}>
+            <h4 className="card-title">{title}</h4>
+          </Link>
           <p className="card-text">
             {truncateSize ? truncate(text, truncateSize) : text}
           </p>

@@ -5,7 +5,7 @@ import { Modal } from "react-bootstrap";
 import { openModal } from "./actions/";
 import FormLogin from "./form-login";
 import FormUpdateArticle from "./form-update-article";
-import userAvis from "../../userAvis";
+import FormSendComment from "./form-send-comment";
 
 class ModalAdmin extends Component {
   constructor() {
@@ -41,6 +41,8 @@ class ModalAdmin extends Component {
     switch (form) {
       case "article-update":
         return <FormUpdateArticle id={id} />;
+      case "send-comment":
+        return <FormSendComment />;
       default:
         return <FormLogin />;
     }

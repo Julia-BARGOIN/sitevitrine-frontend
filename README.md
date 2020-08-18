@@ -2,6 +2,12 @@
 
 **Instalation**
 
-1. télécharger le projet 
-2. dans le ternimal faite un npm init 
-3. npm run start
+télécharger le projet sitevitrine-frontend et sitevitrine-backend
+
+**sitevitrine-frontend**
+1. dans le ternimal faite un npm init 
+2. npm run start
+
+**sitevitrine-backend**
+1. dans le ternimal faite un npm init 
+2. node index.js

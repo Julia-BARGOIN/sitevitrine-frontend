@@ -46,7 +46,11 @@ const Footer = ({ dispatch, isLogeg }) => {
         </p>
         <p>
           {!isLogeg ? (
-            <button to="/admin" onClick={() => dispatch(openModal(true))}>
+            <button
+              to="/admin"
+              onClick={() => dispatch(openModal(true))}
+              className="btn btn-light"
+            >
               Administrateur
             </button>
           ) : null}

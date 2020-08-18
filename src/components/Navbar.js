@@ -58,6 +58,7 @@ const Navbar = ({ dispatch }) => {
 
             <li className="nav-item">
               <button
+                className="btn btn-primary"
                 to="/"
                 onClick={() => dispatch(openModal(true, "send-comment"))}
               >
